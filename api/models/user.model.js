@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    emali:{
+    email:{
         type: String,
         required: true,
         unique: true,
@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
-},  { timeseries: true });
+},  { timestamps: true });
 
 const User = mongoose.model('User', userSchema);
 
