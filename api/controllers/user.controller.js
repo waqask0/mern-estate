@@ -4,17 +4,17 @@ import { errorHandler } from '../utils/error.js';
 
 export const test = (req, res) => {
     res.json({
-        message: 'Api route is working',
+        message: 'Api route is working!',
     });
 };
 
 
 export const updateUser = async (req, res, next) => {
     if (req.user.id !== req.params.id) 
-        return next(errorHandler(401, 'you can only update your own account!'));
+      return next(errorHandler(401, 'you can only update your own account!'));
     try {
       if(req.body.password) {
-        req.body.password = bcryptjs.hashSync(req.body.password, 10)
+        req.body.password = bcryptjs.hashSync(req.body.password, 10);
       }
 
       const updatedUser = await User.findByIdAndUpdate(req.params.id,{
@@ -23,7 +23,7 @@ export const updateUser = async (req, res, next) => {
             email: req.body.email,
             password: req.body.password,
             avatar: req.body.avatar,
-        }
+        },
       }, {new: true}
     );
 
