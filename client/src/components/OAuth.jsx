@@ -10,9 +10,9 @@ export default function OAuth() {
     const handleGoogleClick = async () => {
         try {
             const provider = new GoogleAuthProvider()
-            const auth = getAuth(app)
+            const auth = getAuth(app);
 
-            const result = await signInWithPopup(auth, provider)
+            const result = await signInWithPopup(auth, provider);
 
             const res = await fetch('/api/auth/google',{
                 method: 'POST',
@@ -22,10 +22,10 @@ export default function OAuth() {
                 body: JSON.stringify({ 
                     name:result.user.displayName,
                     email: result.user.email, 
-                    photo: result.user.photoURL 
+                    photo: result.user.photoURL,
                 }),
             });
-            const data = await res.json()
+            const data = await res.json();
             dispatch(signInSuccess(data));
             navigate('/');
         } catch (error) {
